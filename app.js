@@ -9,6 +9,8 @@ class Player{
     constructor(playerName){
         this.playerName = playerName
         this.score = 0
+        this.level = 0
+        this.time = 0
     }
 }
 

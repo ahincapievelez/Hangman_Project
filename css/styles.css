@@ -1,6 +1,7 @@
 body{
-    background-image: url('../images/background1.jpg');
+    background-image: url('../images/background.jpg');
     background-size: cover;
+    /* background-position: -1200px; */
     height: 100vh;
     margin: 0;
     display: grid;
@@ -10,22 +11,44 @@ body{
 }
 
 .logo{
-    border: 1px solid red;
     width: 450px;
     height: 450px;
 }
 
 .left-container{
-    margin-top: 0px;
-    border: 1px solid green;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.space-ship{
+    position: absolute;
+    top: 0px;
+    height: 250px;
+    width: 250px;
+}
+
+.rocket{
+    position: absolute;
+    top: 220px;
+    height: 150px;
+    width: 150px;
+}
+
+.earth{
+    position: absolute;
+    bottom: 0;
+    height: 320px;
+    width: 320px;
 }
 
 .middle-container{
-    border: 1px solid green;
     display: flex;
     justify-content: center;
 }
 
-.right-container{
+/* .right-container{
     border: 1px solid green;
-}
+} */

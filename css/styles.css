@@ -1,0 +1,31 @@
+body{
+    background-image: url('../images/background1.jpg');
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    grid-template-rows: 6fr;
+    
+}
+
+.logo{
+    border: 1px solid red;
+    width: 450px;
+    height: 450px;
+}
+
+.left-container{
+    margin-top: 0px;
+    border: 1px solid green;
+}
+
+.middle-container{
+    border: 1px solid green;
+    display: flex;
+    justify-content: center;
+}
+
+.right-container{
+    border: 1px solid green;
+}

@@ -1,34 +1,77 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Hang-Man</title>
+    <script defer src="app.js"></script>
+    <link href="css/styles.css" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width">
-  <title>Hang-Man</title>
-  <script defer src="app.js"></script>
-  <link href="css/styles.css" rel="stylesheet" type="text/css" />
-</head>
+  <!-- Grid Container -->
+  <body>
+    <!-- flex Container -->
+    <div class="left-container flex-ctr">
+      <img class="space-ship" src="images/spaceship.png" alt="" />
+      <img class="rocket" src="images/rocket.png" alt="" />
+      <img class="earth" src="images/earth.png" alt="" />
+    </div>
 
-<!-- Grid Container -->
-<body>
+    <!-- flex Container -->
+    <div class="middle-container flex-ctr">
+      <img class="logo" src="images/logo.png" alt="" />
 
-  <!-- flex Container -->
-  <div class="left-container flex-ctr">
-    <img class="space-ship" src="images/spaceship.png" alt="">
-    <img class="rocket" src="images/rocket.png" alt="">
-    <img class="earth" src="images/earth.png" alt="">
-  </div>
+      <!-- flex Container -->
+      <div class="keyboard">
+        <!-- flex Container -->
+        <div class="letters">
+          <img class="alphabet" src="images/a.png" alt="" />
+          <img class="alphabet" src="images/b.png" alt="" />
+          <img class="alphabet" src="images/c.png" alt="" />
+          <img class="alphabet" src="images/d.png" alt="" />
+          <img class="alphabet" src="images/e.png" alt="" />
+          <img class="alphabet" src="images/f.png" alt="" />
+          <img class="alphabet" src="images/g.png" alt="" />
+        </div>
+        <!-- flex Container -->
+        <div class="letters">
+          <img class="alphabet" src="images/h.png" alt="" />
+          <img class="alphabet" src="images/i.png" alt="" />
+          <img class="alphabet" src="images/j.png" alt="" />
+          <img class="alphabet" src="images/k.png" alt="" />
+          <img class="alphabet" src="images/l.png" alt="" />
+          <img class="alphabet" src="images/m.png" alt="" />
+          <img class="alphabet" src="images/n.png" alt="" />
+        </div>
+        <!-- flex Container -->
+        <div class="letters">
+          <img class="alphabet" src="images/o.png" alt="" />
+          <img class="alphabet" src="images/p.png" alt="" />
+          <img class="alphabet" src="images/q.png" alt="" />
+          <img class="alphabet" src="images/r.png" alt="" />
+          <img class="alphabet" src="images/s.png" alt="" />
+          <img class="alphabet" src="images/t.png" alt="" />
+          <img class="alphabet" src="images/u.png" alt="" />
+        </div>
+        <!-- flex Container -->
+        <div class="letters">
+          <img class="alphabet" src="images/v.png" alt="" />
+          <img class="alphabet" src="images/w.png" alt="" />
+          <img class="alphabet" src="images/x.png" alt="" />
+          <img class="alphabet" src="images/y.png" alt="" />
+          <img class="alphabet" src="images/z.png" alt="" />
+        </div>
+      </div>
+    </div>
 
-  <!-- flex Container -->
-  <div class="middle-container flex-ctr">
-    <img class="logo" src="images/logo.png" alt="">
-  </div>
-
-  <!-- flex Container -->
-  <div class="right-container flex-ctr"></div>
-    
-
-</body>
-
+    <!-- flex Container -->
+    <div class="right-container flex-ctr"></div>
+  </body>
 </html>

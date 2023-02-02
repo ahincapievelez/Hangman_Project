@@ -10,6 +10,8 @@ body{
     
 }
 
+/*** Left Container ***/
+
 .left-container{
     margin: 0px;
     display: flex;
@@ -20,8 +22,8 @@ body{
 
 .speech-bubleR{
     position: absolute;
-    top: 50px;
-    left: 70px;
+    top: 40px;
+    left: 40px;
     width: 200px;
     height: 150px;
 }
@@ -29,14 +31,14 @@ body{
 .speech-bubleL{
     position: absolute;
     top: 75px;
-    left: 375px;
+    left: 355px;
     width: 200px;
     height: 150px;
 }
 
 .paragraphT{
     position: absolute;
-    top: 102px;
+    top: 91px;
     left: -118px;
     z-index: 1;
     text-align: center;
@@ -82,7 +84,7 @@ body{
 .explosion{
     position: absolute;
     bottom: 258px;
-    left: 215px;
+    left: 195px;
     z-index: 1;
     width: 200px;
     height: 200px;
@@ -95,21 +97,23 @@ body{
     width: 250px;
 }
 
+/*** Middle Container ***/
+
 .middle-container{
-    /* border: 1px solid green; */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-right: 40px;
 }
 
 p{
     position: absolute;
-    bottom: 250px;
+    bottom: 270px;
     width: 30%;
     text-align: center;
     font-family: 'Chakra Petch', sans-serif;
-    font-weight: 400;
+    font-weight: 100;
     font-size: 18px;
     color: white;
 }
@@ -121,9 +125,13 @@ p{
     height: 400px;
 }
 
+.startGame{
+    width: 130px;
+}
+
 .startButton{
     position: absolute;
-    top: 370px;
+    top: 340px;
     width: 130px;
 }
 
@@ -167,13 +175,13 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
-   
+    margin-right: 20px;
 }
 
 .player1{
     position: absolute;
-    top: 174px;
-    right: 205px;
+    top: 146px;
+    right: 230px;
     z-index: 1;
     text-align: center;
     font-family: 'Chakra Petch', sans-serif;
@@ -184,8 +192,8 @@ p{
 
 .player2{
     position: absolute;
-    top: 174px;
-    right: -142px;
+    top: 146px;
+    right: -126px;
     z-index: 1;
     text-align: center;
     font-family: 'Chakra Petch', sans-serif;
@@ -196,14 +204,14 @@ p{
 
 .block-left{
     position: absolute;
-    top: 280px;
-    right: 390px;
+    top: 255px;
+    right: 385px;
 }
 
 .block-right{
     position: absolute;
-    top: 280px;
-    right: 117px;
+    top: 255px;
+    right: 120px;
 }
 
 .title{

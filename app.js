@@ -11,6 +11,8 @@ class Player{
         this.score = 0
         this.level = 0
         this.time = 0
+        this.hint = 0
+        this.lives = 0
     }
 }
 

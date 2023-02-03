@@ -1,7 +1,8 @@
 body{
     background-image: url('../images/background.jpg');
     background-size: cover;
-    /* background-position: -1200px; */
+    /* background-color: #1A120B;
+    opacity: 0.3;  */
     height: 100vh;
     margin: 0;
     display: grid;
@@ -67,7 +68,7 @@ body{
     width: 150px;
 }
 
-.rocket{
+#rocket{
     position: absolute;
     top: 128px;
     z-index: -1;

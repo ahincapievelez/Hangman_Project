@@ -15,6 +15,7 @@ body{
 
 .left-container{
     margin: 0px;
+    z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,7 +41,7 @@ body{
 .paragraphT{
     position: absolute;
     top: 91px;
-    left: -118px;
+    left: 80px;
     z-index: 1;
     text-align: center;
     font-family: 'Chakra Petch', sans-serif;
@@ -52,13 +53,13 @@ body{
 .paragraphB{
     position: absolute;
     top: 126px;
-    left: 184px;
+    left: 420px;
     z-index: 1;
     text-align: center;
     font-family: 'Chakra Petch', sans-serif;
     font-weight: 600;
     font-size: 10px;
-    color: #1A120B;;
+    color: #1A120B;
 }
 
 .space-ship{
@@ -107,15 +108,26 @@ body{
     flex-direction: column;
 }
 
-p{
+.hint{
     position: absolute;
-    bottom: 285px;
+    bottom: 295px;
     width: 30%;
     text-align: center;
     font-family: 'Chakra Petch', sans-serif;
     font-weight: 100;
     font-size: 18px;
     color: white;
+}
+
+.type{
+    position: absolute;
+    bottom: 455px;
+    width: 30%;
+    text-align: center;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    color: #38e54d;
 }
 
 .logo{
@@ -172,7 +184,7 @@ p{
 .player1{
     position: absolute;
     top: 189px;
-    right: 180px;
+    right: 422px;
     z-index: 1;
     text-align: center;
     font-family: 'Chakra Petch', sans-serif;
@@ -184,7 +196,7 @@ p{
 .player2{
     position: absolute;
     top: 189px;
-    right: -120px;
+    right: 120px;
     z-index: 1;
     text-align: center;
     font-family: 'Chakra Petch', sans-serif;

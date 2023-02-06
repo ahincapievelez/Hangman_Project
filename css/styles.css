@@ -122,7 +122,8 @@ body{
 .type{
     position: absolute;
     bottom: 455px;
-    width: 30%;
+    width: 10%;
+    border-radius: 50px;
     text-align: center;
     font-family: 'Chakra Petch', sans-serif;
     font-weight: 700;

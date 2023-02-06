@@ -240,14 +240,14 @@ function compareLetters(letter){
           document.getElementById("score1").innerHTML = player1.setScore();
           document.getElementById("level1").innerHTML = game.level;
           wordGuessed = false;
-          //game.wrongAttempts = 0;
+          game.wrongAttempts = 0;
           let pTags = document.querySelectorAll('.middle-container .type');
           pTags.forEach((p) => {
             p.innerHTML = ""
           });
           let hintTag = document.querySelectorAll('.middle-container .hint');
           hintTag.forEach((p) => {
-            hintTag.innerHTML = ""
+            p.innerHTML = ""
           });
           document.querySelector('#blank-letters').innerHTML = ""
           guessWordAuxArr = [];

@@ -1,6 +1,8 @@
 //*** Words Object ***/
 let wordsArray = [
-  { word: "Czech", hint: "It has the most castles in Europe", type: "Country" },
+  { word: "Czech", 
+    hint: "It has the most castles in Europe",
+    type: "Country" },
   {
     word: "Yakisoba",
     hint: "It is a Japanese variety of fried noodles",
@@ -33,7 +35,9 @@ let wordsArray = [
     hint: "A Polish Jewish musician struggles to survive the destruction of the Warsaw ghetto",
     type: "Movie",
   },
-  { word: "Quesadilla", hint: "Mexican snack", type: "Food" },
+  { word: "Quesadilla",
+    hint: "Mexican snack",
+    type: "Food" }
 ];
 
 //*** Class Player ***/
@@ -103,7 +107,7 @@ let helpButton = document.getElementById("helpButton");
 helpButton.addEventListener("click", function (evt) {
   let container = document.querySelector(".middle-container");
   let p = document.createElement("p");
-  p.textContent = guessingWordObjt.hint;
+  p.textContent = guessWordsArray[game.level - 1].hint;
   p.classList.add("hint");
   container.appendChild(p);
 });
@@ -118,6 +122,10 @@ stopButton.addEventListener("click", function (evt) {
   let pTags = document.querySelectorAll('.middle-container .type');
   pTags.forEach((p) => {
     p.innerHTML = ""
+  });
+  let hintTag = document.querySelectorAll('.middle-container .hint');
+  hintTag.forEach((p) => {
+    hintTag.innerHTML = ""
   });
   document.querySelector('#blank-letters').innerHTML = ""
   player1 = {};
@@ -237,6 +245,10 @@ function compareLetters(letter){
           pTags.forEach((p) => {
             p.innerHTML = ""
           });
+          let hintTag = document.querySelectorAll('.middle-container .hint');
+          hintTag.forEach((p) => {
+            hintTag.innerHTML = ""
+          });
           document.querySelector('#blank-letters').innerHTML = ""
           guessWordAuxArr = [];
           guessWordEl = "";
@@ -254,6 +266,10 @@ function compareLetters(letter){
           let pTags = document.querySelectorAll('.middle-container .type');
           pTags.forEach((p) => {
             p.innerHTML = ""
+          });
+          let hintTag = document.querySelectorAll('.middle-container .hint');
+          hintTag.forEach((p) => {
+            hintTag.innerHTML = ""
           });
           document.querySelector('#blank-letters').innerHTML = ""
           player1 = {};
@@ -289,6 +305,10 @@ function compareLetters(letter){
         let pTags = document.querySelectorAll('.middle-container .type');
         pTags.forEach((p) => {
           p.innerHTML = ""
+        });
+        let hintTag = document.querySelectorAll('.middle-container .hint');
+        hintTag.forEach((p) => {
+          hintTag.innerHTML = ""
         });
         document.querySelector('#blank-letters').innerHTML = ""
         player1 = {};

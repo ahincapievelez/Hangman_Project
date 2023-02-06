@@ -13,7 +13,7 @@ let wordsArray = [
   },
   {
     word: "Cote Divoire",
-    hint: "It iss a country in West Africa bordered by Mali, Burkina Faso, Ghana, Liberia and Guinea",
+    hint: "It is a country in West Africa bordered by Mali, Burkina Faso, Ghana, Liberia and Guinea",
     type: "Country",
   },
   {
@@ -108,6 +108,30 @@ helpButton.addEventListener("click", function (evt) {
   container.appendChild(p);
 });
 
+/*********************/
+/*    STOP BUTTON    */
+/*********************/
+let stopButton = document.getElementById("stopButton");
+stopButton.addEventListener("click", function (evt) {
+  alert('You Loose!!')
+  game.wrongAttempts = 0;
+  let pTags = document.querySelectorAll('.middle-container .type');
+  pTags.forEach((p) => {
+    p.innerHTML = ""
+  });
+  document.querySelector('#blank-letters').innerHTML = ""
+  player1 = {};
+  game = {};
+  guessingWordObjt = "";
+  guessWordsArray = [];
+  wordToGuess = ""
+  guessWordAuxArr = [];
+  guessWordEl = "";
+  selectedLetter = "";
+  wordGuessed = false;
+  clearAll();
+  startGame();
+});
 /******************************************* FUNCTIONS ******************************************/
 
 function startGame(){
@@ -277,7 +301,7 @@ function compareLetters(letter){
         selectedLetter = "";
         wordGuessed = false;
         clearAll();
-        startGame()
+        startGame();
       } else {
         i++;
       }

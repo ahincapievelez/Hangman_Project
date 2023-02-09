@@ -126,6 +126,8 @@ stopButton.addEventListener("click", function (evt) {
   if(gameStatus){
     //alert('You Loose!!')
     setTimeout(function() {
+      document.getElementById("score1").innerHTML = "0";
+      document.getElementById("level1").innerHTML = "1";
       setNewGame();
     }, 500);
   }
@@ -232,7 +234,18 @@ function compareLetters(letter){
       letter.style.pointerEvents = "none";
       letterFound = true;
       setGuessedLetters();
-      i++;
+      wordGuessed = equalWords(wordToGuess, guessWordAuxArr);
+      if(wordGuessed && game.level == 4){
+        player1.setScore();
+        alert('You are the championg')
+        console.log('You are the champion');
+        setNewGame();
+      }else if(wordGuessed){
+        player1.setScore();
+        goNextLevel();
+      } else {
+        i++;
+      }
     } else {
       if(i == wordToGuess.length - 1 && !letterFound){
         letter.src = "images/wrong.png";
@@ -250,6 +263,8 @@ function compareLetters(letter){
           leftContainer.appendChild(img);
           disableKeyboard();
           setTimeout(function() {
+            document.getElementById("score1").innerHTML = "0";
+            document.getElementById("level1").innerHTML = "1";
             setNewGame();
           }, 1000);
         }
@@ -298,6 +313,56 @@ function equalWords(array1, array2) {
   return result;
 }
 
+//*** Set next level ***/
+function goNextLevel(){
+  clearAll();
+  guessingWordObjt = "";
+  guessWordsArray = [];
+  wordToGuess = ""
+  guessWordAuxArr = [];
+  guessWordEl.innerHTML = "";
+  selectedLetter = "";
+  wordGuessed = false;
+  game.level += 1;
+  document.getElementById("score1").innerHTML = player1.setScore();
+  document.getElementById("level1").innerHTML = game.level;
+
+  switch (game.level) {
+    case 2:
+      setGame();
+      setKeyboard();
+      console.log('level: ' + game.level)
+      wordToGuess = guessWordsArray[game.level - 1].word.toLowerCase();
+      console.log(wordToGuess);
+      showWordGuessingType(guessWordsArray[game.level - 1].type);
+      setBlankLetters(wordToGuess);
+      break;
+    
+    case 3:
+      setGame();
+      setKeyboard();
+      console.log('level: ' + game.level)
+      wordToGuess = guessWordsArray[game.level - 1].word.toLowerCase();
+      console.log(wordToGuess);
+      showWordGuessingType(guessWordsArray[game.level - 1].type);
+      setBlankLetters(wordToGuess);
+      break;
+
+    case 4:
+      setGame();
+      setKeyboard();
+      console.log('level: ' + game.level)
+      wordToGuess = guessWordsArray[game.level - 1].word.toLowerCase();
+      console.log(wordToGuess);
+      showWordGuessingType(guessWordsArray[game.level - 1].type);
+      setBlankLetters(wordToGuess);
+      break;
+  
+    default:
+      break;
+  }
+}
+
 //*** Clear all correct and wrong letters */
 function clearAll(){
 
@@ -338,7 +403,6 @@ function clearAll(){
   
 }
 
-
 //*** Disable all the letters ***/
 function disableKeyboard(){
   selectedLetters = document.querySelectorAll("#keyboard img");
@@ -358,6 +422,7 @@ function buttonAnimation(buttonPressed) {
   }, 100);
 }
 
+//*** Set new game ***/
 function setNewGame(){
   clearAll();
   player1 = {};

@@ -86,8 +86,8 @@ let guessWordsArray = [];
 let wordToGuess = ""
 let guessWordAuxArr = [];
 let guessWordEl = "";
-let selectedLetter = "";
 let wordGuessed = false;
+let gameStatus = false;
 
 /******************************************** BUTTONS ******************************************/
 
@@ -97,7 +97,10 @@ let wordGuessed = false;
 let startPlay = document.getElementById("startButton");
 startPlay.addEventListener("click", function (evt) {
   evt.preventDefault();
-  startGame();
+  if(!gameStatus){
+    gameStatus = true;
+    startGame();
+  } 
 });
 
 /*********************/
@@ -105,11 +108,14 @@ startPlay.addEventListener("click", function (evt) {
 /*********************/
 let helpButton = document.getElementById("helpButton");
 helpButton.addEventListener("click", function (evt) {
-  let container = document.querySelector(".middle-container");
-  let p = document.createElement("p");
-  p.textContent = guessWordsArray[game.level - 1].hint;
-  p.classList.add("hint");
-  container.appendChild(p);
+  if(gameStatus){
+    let container = document.querySelector(".middle-container");
+    let p = document.createElement("p");
+    p.textContent = guessWordsArray[game.level - 1].hint;
+    p.classList.add("hint");
+    p.id = "hint";
+    container.appendChild(p);
+  }
 });
 
 /*********************/
@@ -117,29 +123,14 @@ helpButton.addEventListener("click", function (evt) {
 /*********************/
 let stopButton = document.getElementById("stopButton");
 stopButton.addEventListener("click", function (evt) {
-  alert('You Loose!!')
-  game.wrongAttempts = 0;
-  let pTags = document.querySelectorAll('.middle-container .type');
-  pTags.forEach((p) => {
-    p.innerHTML = ""
-  });
-  let hintTag = document.querySelectorAll('.middle-container .hint');
-  hintTag.forEach((p) => {
-    hintTag.innerHTML = ""
-  });
-  document.querySelector('#blank-letters').innerHTML = ""
-  player1 = {};
-  game = {};
-  guessingWordObjt = "";
-  guessWordsArray = [];
-  wordToGuess = ""
-  guessWordAuxArr = [];
-  guessWordEl = "";
-  selectedLetter = "";
-  wordGuessed = false;
-  clearAll();
-  startGame();
+  if(gameStatus){
+    //alert('You Loose!!')
+    setTimeout(function() {
+      setNewGame();
+    }, 500);
+  }
 });
+
 /******************************************* FUNCTIONS ******************************************/
 
 function startGame(){
@@ -148,16 +139,17 @@ function startGame(){
   player1 = new Player();
   console.log(player1);
   setGame();
+  setKeyboard();
   if(game.level - 1 == 0){
     console.log('level: ' + game.level)
     wordToGuess = guessWordsArray[game.level - 1].word.toLowerCase();
     console.log(wordToGuess);
     showWordGuessingType(guessWordsArray[game.level - 1].type);
     setBlankLetters(wordToGuess);
-    setKeyboard();
   }
 
 }
+
 //*** Set the Game Function ***/
 function setGame() {
   // Generating four words objects
@@ -166,6 +158,13 @@ function setGame() {
     guessWordsArray.push(guessingWordObjt);
   }
   console.log(guessWordsArray)
+
+  let leftContainer = document.querySelector(".left-container");
+  let img = document.createElement("img");
+  img.id = "rocket";
+  img.src = "images/rocket.png";
+  leftContainer.appendChild(img);
+
 }
 
 //*** Getting Random Guessing Words Function ***/
@@ -181,6 +180,7 @@ function showWordGuessingType(wordType){
   let typeWord = document.querySelector(".middle-container");
   let p = document.createElement("p");
   p.classList.add("type");
+  p.id = "type";
   p.textContent = wordType.toUpperCase();
   console.log(p.textContent);
   typeWord.appendChild(p);
@@ -210,11 +210,12 @@ function setBlankLetters(wordGuessing){
 
 //*** Function to add Evt listener to all the keyboard ****/
 function setKeyboard(){
-  selectedLetter = document.querySelectorAll("#keyboard img");
+  let selectedLetter = document.querySelectorAll("#keyboard img");
   selectedLetter.forEach((imgs) => {
     imgs.addEventListener("click", function (evt) {
       evt.preventDefault();
       compareLetters(evt.target);
+      buttonAnimation(evt.target.id);
     });
   });
 }
@@ -228,106 +229,33 @@ function compareLetters(letter){
     if(letter.id == wordToGuess[i].toLowerCase()) {
       letter.src = "images/correct.png";
       guessWordAuxArr[i] = letter.id;
-      console.log(guessWordAuxArr)
       letter.style.pointerEvents = "none";
       letterFound = true;
       setGuessedLetters();
-      wordGuessed = equalWords(wordToGuess, guessWordAuxArr);
-      if (wordGuessed) {
-        game.level += 1;
-        game.wrongAttempts = 0;
-        if(game.level <= 4){
-          document.getElementById("score1").innerHTML = player1.setScore();
-          document.getElementById("level1").innerHTML = game.level;
-          wordGuessed = false;
-          game.wrongAttempts = 0;
-          let pTags = document.querySelectorAll('.middle-container .type');
-          pTags.forEach((p) => {
-            p.innerHTML = ""
-          });
-          let hintTag = document.querySelectorAll('.middle-container .hint');
-          hintTag.forEach((p) => {
-            p.innerHTML = ""
-          });
-          document.querySelector('#blank-letters').innerHTML = ""
-          guessWordAuxArr = [];
-          guessWordEl = "";
-          clearAll();
-          console.log('level: ' + game.level)
-          wordToGuess = guessWordsArray[game.level - 1].word.toLowerCase();
-          console.log(wordToGuess);
-          showWordGuessingType(guessWordsArray[game.level - 1].type);
-          setBlankLetters(wordToGuess);
-          setKeyboard();
-          i++;
-        }else {
-          alert('You win!!')
-          game.wrongAttempts = 0;
-          let pTags = document.querySelectorAll('.middle-container .type');
-          pTags.forEach((p) => {
-            p.innerHTML = ""
-          });
-          let hintTag = document.querySelectorAll('.middle-container .hint');
-          hintTag.forEach((p) => {
-            hintTag.innerHTML = ""
-          });
-          document.querySelector('#blank-letters').innerHTML = ""
-          player1 = {};
-          game = {};
-          guessingWordObjt = "";
-          guessWordsArray = [];
-          wordToGuess = ""
-          guessWordAuxArr = [];
-          guessWordEl = "";
-          selectedLetter = "";
-          wordGuessed = false;
-          clearAll();
-          startGame();
-        }
-      } else {
-        i++;
-      }
-    } else if (i == wordToGuess.length - 1 && !letterFound) {
-      letter.src = "images/wrong.png";
-      game.wrongAttempts += 1;
-      letter.style.pointerEvents = "none";
-      let rocketDistance = document.getElementById("rocket");
-      rocketDistance.style.top = game.attack() + "px";
-      if (game.wrongAttempts >= 7) {
-        document.getElementById("lives1").innerHTML = player1.removeLives();
-        let leftContainer = document.querySelector(".left-container");
-        let img = document.createElement("img");
-        img.classList.add("explosion");
-        img.src = "images/explosion.png";
-        leftContainer.appendChild(img);
-        alert('You Loose!!')
-        game.wrongAttempts = 0;
-        let pTags = document.querySelectorAll('.middle-container .type');
-        pTags.forEach((p) => {
-          p.innerHTML = ""
-        });
-        let hintTag = document.querySelectorAll('.middle-container .hint');
-        hintTag.forEach((p) => {
-          hintTag.innerHTML = ""
-        });
-        document.querySelector('#blank-letters').innerHTML = ""
-        player1 = {};
-        game = {};
-        guessingWordObjt = "";
-        guessWordsArray = [];
-        wordToGuess = ""
-        guessWordAuxArr = [];
-        guessWordEl = "";
-        selectedLetter = "";
-        wordGuessed = false;
-        clearAll();
-        startGame();
-      } else {
-        i++;
-      }
-    } else {
       i++;
-    }
+    } else {
+      if(i == wordToGuess.length - 1 && !letterFound){
+        letter.src = "images/wrong.png";
+        game.wrongAttempts += 1;
+        letter.style.pointerEvents = "none";
+        let rocketDistance = document.getElementById("rocket");
+        rocketDistance.style.top = game.attack() + "px";
+        if(game.wrongAttempts >= 7){
+          let leftContainer = document.querySelector(".left-container");
+          let img = document.createElement("img");
+          img.classList.add("explosion");
+          img.classList.add("Active");
+          img.id = "explosion";
+          img.src = "images/explosion.png";
+          leftContainer.appendChild(img);
+          disableKeyboard();
+          setTimeout(function() {
+            setNewGame();
+          }, 1000);
+        }
+      }
+      i++;
+    }  
   }
 }
 
@@ -372,9 +300,74 @@ function equalWords(array1, array2) {
 
 //*** Clear all correct and wrong letters */
 function clearAll(){
+
   let keyboard = document.querySelectorAll("#keyboard img");
   keyboard.forEach((img) => {
     img.src = "images/" + img.id + ".png";
     img.style.pointerEvents = "initial";
-  })
+    img.classList.remove("disableLetter");
+  });
+
+  let removeExplosion = document.getElementById("explosion");
+  if(removeExplosion){
+    removeExplosion.parentNode.removeChild(removeExplosion);
+  }
+  
+  let removeHint = document.getElementById("hint");
+  if(removeHint){
+    removeHint.parentNode.removeChild(removeHint);
+  }
+
+  let removeType = document.getElementById("type");
+  if(removeType){
+    removeType.parentNode.removeChild(removeType);
+  }
+
+  let removeRocket = document.getElementById("rocket");
+  if(removeRocket){
+    removeRocket.parentNode.removeChild(removeRocket);
+  }
+  
+  // let rocketDistance = document.getElementById("rocket");
+  // if(rocketDistance.style.top != "128px"){
+  //   rocketDistance.style.top = "128px";
+  //   game.rocketDistance = 128;
+  // }
+
+  game.wrongAttempts = 0;
+  
+}
+
+
+//*** Disable all the letters ***/
+function disableKeyboard(){
+  selectedLetters = document.querySelectorAll("#keyboard img");
+  selectedLetters.forEach((letter) => {
+    letter.classList.add("disableLetter");
+    letter.style.pointerEvents = "none";
+  });
+}
+
+//*** Button Animation ***/
+function buttonAnimation(buttonPressed) {
+
+  var activeButton = document.querySelector("#" + buttonPressed);
+  activeButton.classList.add("pressed");
+  setTimeout(function() {
+    activeButton.classList.remove("pressed");
+  }, 100);
+}
+
+function setNewGame(){
+  clearAll();
+  player1 = {};
+  game = {};
+  guessingWordObjt = "";
+  guessWordsArray = [];
+  wordToGuess = ""
+  guessWordAuxArr = [];
+  guessWordEl.innerHTML = "";
+  selectedLetter = "";
+  wordGuessed = false;
+  gameStatus = false;
 }

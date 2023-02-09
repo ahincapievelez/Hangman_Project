@@ -251,3 +251,13 @@ body{
 #startButton, #helpButton, #stopButton{
     width: 130px;
 }
+
+.pressed {
+    box-shadow: 0 3px 4px 0 #DBEDF3;
+    opacity: 0.5;
+    border-radius: 50px;
+}
+
+.disableLetter{
+    opacity: 0.5;
+}

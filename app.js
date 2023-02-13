@@ -88,6 +88,8 @@ let guessWordAuxArr = [];
 let guessWordEl = "";
 let wordGuessed = false;
 let gameStatus = false;
+var countDown;
+let clock;
 
 /******************************************** BUTTONS ******************************************/
 
@@ -99,6 +101,8 @@ startPlay.addEventListener("click", function (evt) {
   evt.preventDefault();
   if(!gameStatus){
     gameStatus = true;
+    clock = document.getElementById("time1");
+    clock.innerHTML = "2:00";
     startGame();
   } 
 });
@@ -128,6 +132,8 @@ stopButton.addEventListener("click", function (evt) {
     setTimeout(function() {
       document.getElementById("score1").innerHTML = "0";
       document.getElementById("level1").innerHTML = "1";
+      document.getElementById("time1").innerHTML = "2:00";
+      clearInterval(countDown);
       setNewGame();
     }, 500);
   }
@@ -142,6 +148,7 @@ function startGame(){
   console.log(player1);
   setGame();
   setKeyboard();
+  decrementTimer();
   if(game.level - 1 == 0){
     console.log('level: ' + game.level)
     wordToGuess = guessWordsArray[game.level - 1].word.toLowerCase();
@@ -435,4 +442,35 @@ function setNewGame(){
   selectedLetter = "";
   wordGuessed = false;
   gameStatus = false;
+}
+
+//*** Decrement Timer ***/
+function decrementTimer(){
+
+  clearInterval(countDown);
+  countDown = setInterval(function (){
+    var timer = clock.textContent;
+    timer = timer.split(":");
+    let minutes = parseInt(timer[0]);
+    let seconds = parseInt(timer[1]);
+    
+    if(seconds == 0) {
+      minutes -= 1;
+      seconds = 60;
+    } 
+    seconds -= 1;
+    if(seconds >= 10){
+      clock.innerHTML = minutes + ":" + seconds;
+      console.log(clock.innerHTML);
+    } else {
+      if(minutes == 0 && seconds == 0){
+        clock.innerHTML = "--:--";
+        clearInterval(countDown);
+      } else{
+        clock.innerHTML = minutes + ":0" + seconds;
+        console.log(clock.innerHTML);
+      }
+    }
+
+   }, 1000);
 }
